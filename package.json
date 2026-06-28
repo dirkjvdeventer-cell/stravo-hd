@@ -1,0 +1,14 @@
+{
+  "name": "stravo-proxy",
+  "version": "1.0.0",
+  "description": "Stravo HD quality proxy addon for Stremio",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "node-fetch": "^2.7.0"
+  }
+}
