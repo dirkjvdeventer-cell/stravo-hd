@@ -19,6 +19,7 @@ const MAX_FILE_SIZE_BYTES = 8 * 1024 * 1024 * 1024;
 
 // CAM/TS/bad source keywords to block
 const BAD_SOURCE_KEYWORDS = [
+  'subbed', 'animesuge', 'animixplay', 'animepahe', 'gogoanime', 'zoro', 'aniwatch',
   'cam', 'camrip', 'hdcam', 'ts', 'telesync', 'tc', 'telecine',
   'hdts', 'scr', 'screener', 'dvdscr', 'r5', 'pdvd', 'workprint'
 ];
