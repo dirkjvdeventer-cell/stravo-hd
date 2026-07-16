@@ -8,6 +8,7 @@ const STRAVO_BASE = 'https://stravo-clfk.onrender.com';
 const LITEAIO_BASE = 'https://liteaio.com';
 const LITEAIO_TOKEN = '_6YpxYlFGZcoDhNSY5Sl0HF3';
 const LITEAIO_TOKEN_2 = 'HWYwH5FcgisEGBxk0d6ms8Vd';
+const LITEAIO_TOKEN_3 = '6f23kfjO3-95RECWIg2k0ChB';
 const PENGUPLAY_BASE = 'https://pengu.uk';
 const PENGUPLAY_TOKEN = '%7B%22source_4khdhub%22%3A%22on%22%2C%22source_cinefreak%22%3A%22on%22%2C%22source_aniwaves%22%3A%22on%22%2C%22source_moviebox%22%3A%22on%22%2C%22source_moviesdrives%22%3A%22on%22%2C%22source_allmovieland%22%3A%22on%22%2C%22source_overflix%22%3A%22on%22%2C%22source_vaplayer%22%3A%22on%22%2C%22source_vidking%22%3A%22on%22%2C%22source_animesuge%22%3A%22on%22%2C%22source_aether%22%3A%22on%22%2C%22source_vidlink%22%3A%22on%22%2C%22source_hdghartv%22%3A%22on%22%2C%22source_scloud%22%3A%22on%22%2C%22res_1080%22%3A%22on%22%2C%22res_720%22%3A%22on%22%2C%22res_480%22%3A%22on%22%2C%22res_360%22%3A%22on%22%2C%22disable_direct%22%3A%22on%22%2C%22auth_token%22%3A%229xYPEkp5ztRKMJ1clYgJctJAeeNKxpm3VIWBSVHGBUo%22%7D';
 
@@ -173,6 +174,17 @@ const trevorttvManifest = {
   behaviorHints: { configurable: false, p2p: false },
 };
 
+const desireliteaioManifest = {
+  id: 'org.ripspaz.desireliteaio.proxy',
+  version: '1.0.0',
+  name: 'Desire LiteAIO',
+  description: 'Desire LiteAIO streams proxied with Stremio user-agent for WuPlay compatibility',
+  resources: ['stream', 'catalog', 'meta'],
+  types: ['movie', 'series'],
+  idPrefixes: ['tt'],
+  behaviorHints: { configurable: false, p2p: false },
+};
+
 const penguplayManifest = {
   id: 'org.ripspaz.penguplay.proxy',
   version: '1.0.0',
@@ -197,6 +209,10 @@ app.get('/', (req, res) => {
     <hr/>
     <h2>trevortvd</h2>
     <p>trevortvd Install URL: <code>${host}/trevortvd/manifest.json</code></p>
+    <hr/>
+    <h2>Desire LiteAIO</h2>
+    <p>Desire LiteAIO proxy for WuPlay.</p>
+    <p>Desire LiteAIO Install URL: <code>${host}/desireliteaio/manifest.json</code></p>
     <hr/>
     <h2>PenguPlay Filtered</h2>
     <p>CAM/TS blocked · Files over 8GB blocked · Clean releases only</p>
@@ -243,6 +259,10 @@ app.get('/liteaio/*', (req, res) => liteaioProxy(LITEAIO_TOKEN, req, res));
 app.get('/trevortvd/manifest.json', (req, res) => res.json(trevorttvManifest));
 app.get('/trevortvd/*', (req, res) => liteaioProxy(LITEAIO_TOKEN_2, req, res));
 
+// ─── DESIRE LITEAIO ROUTES ───────────────────────────────────────
+app.get('/desireliteaio/manifest.json', (req, res) => res.json(desireliteaioManifest));
+app.get('/desireliteaio/*', (req, res) => liteaioProxy(LITEAIO_TOKEN_3, req, res));
+
 // ─── PENGUPLAY ROUTES ────────────────────────────────────────────
 app.get('/penguplay/manifest.json', (req, res) => res.json(penguplayManifest));
 
@@ -280,6 +300,7 @@ app.listen(PORT, () => {
   console.log(`Proxy running on port ${PORT}`);
   console.log(`Stravo:     http://localhost:${PORT}/manifest.json`);
   console.log(`LiteAIO:    http://localhost:${PORT}/liteaio/manifest.json`);
-  console.log(`trevortvd:  http://localhost:${PORT}/trevortvd/manifest.json`);
+  console.log(`trevortvd:     http://localhost:${PORT}/trevortvd/manifest.json`);
+  console.log(`desireliteaio: http://localhost:${PORT}/desireliteaio/manifest.json`);
   console.log(`PenguPlay:  http://localhost:${PORT}/penguplay/manifest.json`);
 });
